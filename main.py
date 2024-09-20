@@ -1,8 +1,16 @@
 from fastapi import FastAPI,HTTPException
 import mysql.connector
 from model import Movie
+from dotenv import load_dotenv
+import os
 
-mydb=mysql.connector.connect(host="localhost",username="root",password="nicole@pioneer1",database="movies")
+load_dotenv()
+
+db_host = os.getenv('DB_HOST')
+db_username = os.getenv('DB_USERNAME')
+db_password = os.getenv('DB_PASSWORD')
+
+mydb=mysql.connector.connect(host=db_host,username=db_username,password=db_password,database="movies")
 
 mycursor=mydb.cursor()
 
